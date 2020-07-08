@@ -1,10 +1,24 @@
-# Kubernetes ダッシュボード
+# Cloud Shell から OKE に接続
 
 ```
 kubectl version
 
-kubectl get node -o wide
+mkdir ~/kubectl
+cd ~/kubectl
+wget https://storage.googleapis.com/kubernetes-release/release/v1.16.8/bin/linux/amd64/kubectl
+chmod +x ~/kubectl/kubectl
+echo 'PATH=$HOME/kubectl:$PATH' >> $HOME/.bashrc
 
+exit
+
+kubectl version
+
+kubectl get node -o wide
+```
+
+# Kubernetes ダッシュボード
+
+```
 kubectl apply -f https://raw.githubusercontent.com/Sugi275/oke-handson/master/dashboard-oke-admin-service-account.yaml
 
 kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep oke-admin | awk '{print $1}')
