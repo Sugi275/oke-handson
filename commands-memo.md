@@ -9,7 +9,7 @@ wget https://storage.googleapis.com/kubernetes-release/release/v1.16.8/bin/linux
 chmod +x ~/kubectl/kubectl
 echo 'PATH=$HOME/kubectl:$PATH' >> $HOME/.bashrc
 
-exit
+source $HOME/.bashrc
 
 kubectl version
 
@@ -52,6 +52,14 @@ kubectl get deployment -o wide
 kubectl get pod -o wide
 
 kubectl describe deployments/cowweb
+
+kubectl get service -o wide
+
+kubectl apply -f https://raw.githubusercontent.com/Sugi275/oke-handson/master/service-cowweb.yaml
+
+kubectl get service -o wide
+
+kubectl get service -o wide
 
 curl "http://<LoadBalancer IP>/cowsay/say?say=HOSTNAME"
 
